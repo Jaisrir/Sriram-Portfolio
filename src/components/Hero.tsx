@@ -3,6 +3,7 @@ import { ArrowDown, Mail, Github, Linkedin, Terminal, Sparkles, ExternalLink, Co
 import { motion } from 'motion/react';
 import { PersonalData } from '../types';
 import defaultAvatar from '../assets/avatar.png';
+import { avatarBase64 } from '../assets/avatarBase64';
 
 interface HeroProps {
   personalData: PersonalData;
@@ -320,20 +321,13 @@ export const Hero: React.FC<HeroProps> = ({ personalData, onUpdateAvatar }) => {
                   {/* Profile Photo */}
                   <img
                     id="hero-profile-avatar"
-                    src={personalData.avatarUrl && personalData.avatarUrl !== '/avatar.png' && personalData.avatarUrl !== '/avatar.svg' ? personalData.avatarUrl : defaultAvatar}
+                    src={personalData.avatarUrl && personalData.avatarUrl !== '/avatar.png' && personalData.avatarUrl !== '/avatar.svg' && !personalData.avatarUrl.includes('avatar.svg') ? personalData.avatarUrl : avatarBase64}
                     alt={personalData.name}
                     className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
                     loading="eager"
-                    referrerPolicy="no-referrer"
                     onError={(e) => {
                       const target = e.currentTarget;
-                      if (!target.dataset.fallbackCount) {
-                        target.dataset.fallbackCount = '1';
-                        target.src = defaultAvatar;
-                      } else if (target.dataset.fallbackCount === '1') {
-                        target.dataset.fallbackCount = '2';
-                        target.src = "/avatar.png";
-                      }
+                      target.src = avatarBase64;
                     }}
                   />
 

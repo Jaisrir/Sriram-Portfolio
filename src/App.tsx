@@ -10,6 +10,7 @@ import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
 import { ResumeModal } from './components/ResumeModal';
 import { ExperienceLetterModal } from './components/ExperienceLetterModal';
+import { avatarBase64 } from './assets/avatarBase64';
 import {
   initialPersonalData,
   initialSkills,
@@ -103,10 +104,8 @@ export default function App() {
           // Always ensure verified primary user email
           parsed.email = 'sriram.cse.elangovan@gmail.com';
           parsed.secondaryEmail = 'sriramjai983@gmail.com';
-          // Guarantee requested avatar.png is preserved
-          if (parsed.avatarUrl && (parsed.avatarUrl.includes('avatars.githubusercontent.com') || parsed.avatarUrl.includes('github') || parsed.avatarUrl === '/avatar.svg')) {
-            parsed.avatarUrl = initialPersonalData.avatarUrl;
-          }
+          // Guarantee real photo is always used
+          parsed.avatarUrl = avatarBase64;
           // Always use up-to-date bio from initialPersonalData to keep (@Jaisrir) removed
           parsed.bio = initialPersonalData.bio;
           if (!parsed.resumeUrl || parsed.resumeUrl === '#contact') {

@@ -1,4 +1,5 @@
 import { PersonalData, SkillItem, ProjectItem, TimelineItem, GitHubStatsData } from './types';
+import { avatarBase64 } from './assets/avatarBase64';
 
 /**
  * ============================================================================
@@ -39,7 +40,7 @@ export const initialPersonalData: PersonalData = {
   linkedinUrl: "https://linkedin.com/in/sriram-e",
   twitterUrl: "https://x.com/Jaisrir",
   resumeUrl: "/resume.pdf", // User can upload resume.pdf to public folder to update anytime
-  avatarUrl: "/avatar.png", // Cyber Developer Portrait
+  avatarUrl: avatarBase64, // Real Cyber Developer Portrait photo embedded
 
   // 👉 QUICK STATS (Accurate, Real Details Only)
   stats: {

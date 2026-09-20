@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { ArrowDown, Mail, Github, Linkedin, Terminal, Sparkles, ExternalLink, Code2, Camera, Upload, Check } from 'lucide-react';
 import { motion } from 'motion/react';
 import { PersonalData } from '../types';
+import defaultAvatar from '../assets/avatar.png';
 
 interface HeroProps {
   personalData: PersonalData;
@@ -319,7 +320,7 @@ export const Hero: React.FC<HeroProps> = ({ personalData, onUpdateAvatar }) => {
                   {/* Profile Photo */}
                   <img
                     id="hero-profile-avatar"
-                    src={personalData.avatarUrl}
+                    src={personalData.avatarUrl && personalData.avatarUrl !== '/avatar.png' && personalData.avatarUrl !== '/avatar.svg' ? personalData.avatarUrl : defaultAvatar}
                     alt={personalData.name}
                     className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
                     loading="eager"
@@ -328,13 +329,10 @@ export const Hero: React.FC<HeroProps> = ({ personalData, onUpdateAvatar }) => {
                       const target = e.currentTarget;
                       if (!target.dataset.fallbackCount) {
                         target.dataset.fallbackCount = '1';
-                        target.src = "/Gemini_Generated_Image_ryynrfryynrfryyn.png";
+                        target.src = defaultAvatar;
                       } else if (target.dataset.fallbackCount === '1') {
                         target.dataset.fallbackCount = '2';
                         target.src = "/avatar.png";
-                      } else if (target.dataset.fallbackCount === '2') {
-                        target.dataset.fallbackCount = '3';
-                        target.src = "/avatar.svg";
                       }
                     }}
                   />
